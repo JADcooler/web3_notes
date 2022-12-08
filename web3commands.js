@@ -1,0 +1,25 @@
+//node
+
+const Web3 = require('web3')
+const url = 'http://127.0.0.1:8545'
+const web3 = new Web3(url)
+
+accounts = web3.eth.getAccounts()
+
+var account;
+
+accounts.then( (v)=> {( this.account = v[9] )}  )
+
+const contract = new web3.eth.Contract(abi,address)
+
+contract.methods.withdraw('1000000000000000000').send({gas:3000000, from: account})
+
+contract.methods.kill().send({gas:3000000, from:account})
+
+_____________________________________________________________
+
+//cryptozombies
+
+ZC = web3.eth.contract(abi)
+Z = ZC.at(address)
+Z.function()
