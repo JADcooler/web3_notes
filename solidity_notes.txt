@@ -1,0 +1,15 @@
+DELEGATE CALL
+_____________
+
+(bool success, bytes memory data) = _contract.delegatecall(
+            abi.encodeWithSignature("setVars(uint256)", _num)
+        );
+
+(bool success, bytes memory data) = _contract.delegatecall(
+            abi.encodeWithSignature("setVars(uint256,uint256)", _num, _num2)
+        );
+
+abi.decode(result, (uint256));
+abi.decode(result, (return list));
+
+msg.data is the raw data that's sent in the transaction.

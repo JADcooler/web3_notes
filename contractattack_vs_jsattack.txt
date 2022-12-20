@@ -1,0 +1,8 @@
+when it comes to js web3
+u can check current block details and the when you try to click confirm
+in metamask, another block might be created
+
+this is not the case when i comes to contract, as
+the information you put executes only when you click confirm trans.
+
+
