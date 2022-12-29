@@ -1,0 +1,7 @@
+when it expects a class object address, does it accept malicious class object thats derived/similar? ethernaut elevator
+
+any funcion that relies on private variales secrect is doomed
+
+toxic or outdated imports
+
+if version 6 or lower, look for underflow/overflow in EVERY possible place

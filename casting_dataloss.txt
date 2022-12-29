@@ -1,0 +1,10 @@
+in bytes
+if we have abcdef
+and want to say reduce to 3 nibbles
+def gets removed
+= abc
+
+if we have uint = abcdef
+and want to reduce to 3 nibbles uint
+abc gets removed
+= def

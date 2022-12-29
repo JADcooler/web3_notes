@@ -54,4 +54,45 @@ ____________________________________________________________________
 
 receive() is called if msg.data is empty, otherwise fallback() is called.
 
+(bool success, ) = address(level13).call{gas: i + (8191 * 3)}(abi.encodeWithSignature("enter(bytes8)", _gateKey));
+
+
+if conract objec has payable functions payable is used
+
+for (uint256 i = 0; i < 300; i++) {
+            (bool success, ) = address(level13).call{gas: i + (8191 * 3)}(abi.encodeWithSignature("enter(bytes8)", _gateKey));
+            if (success) {
+                break;
+            }
+        }
+
+
+TRY CATCH
+________
+
+A failure in an external call can be caught using a try/catch statement
+
+ DataFeed feed;
+
+try feed.getData(token) returns (uint v) {
+            return (v, true);
+        } catch Error(string memory /*reason*/) {
+            // This is executed in case
+            // revert was called inside getData
+            // and a reason string was provided.
+            errorCount++;
+            return (0, false);
+        } catch Panic(uint /*errorCode*/) {
+            // This is executed in case of a panic,
+            // i.e. a serious error like division by zero
+            // or overflow. The error code can be used
+            // to determine the kind of error.
+            errorCount++;
+            return (0, false);
+        } catch (bytes memory /*lowLevelData*/) {
+            // This is executed in case revert() was used.
+            errorCount++;
+            return (0, false);
+        }
+
 

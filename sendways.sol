@@ -1,3 +1,28 @@
+send by function call
+        a.blah{value: ValueToSend}(2, 3);
+
+value mari, u can have data for msg.data in receiving end
+
+
+call fumction
+
+ (bool sent, bytes memory data) = addr.call{value: msg.value, gas: 5000}(
+    abi.encodeWithSignature("foo(string,uint256)", "call foo", 123)
+);
+
+        g.enter{gas: s}(b);
+
+
+obj.function{gas : gasVal}(param); //this acrually works~!!! for gasleft() being updated
+
+
+
+
+
+
+
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
@@ -49,3 +74,4 @@ contract SendEther {
         require(sent, "Failed to send Ether");
     }
 }
+
