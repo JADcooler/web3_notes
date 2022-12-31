@@ -12,3 +12,4 @@ Force sending ether breaking business logic
 
 arbitrary assignment to variables making them break for others like INT_MAX/INT_MIN leading to revert/DOS
 
+compare well established implementations with current implementation. eg : ERC20/ERC721 and target contracts derived from IERC20/IERC721
