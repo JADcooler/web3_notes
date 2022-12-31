@@ -5,3 +5,10 @@ any funcion that relies on private variales secrect is doomed
 toxic or outdated imports
 
 if version 6 or lower, look for underflow/overflow in EVERY possible place
+
+reentrance
+
+Force sending ether breaking business logic
+
+arbitrary assignment to variables making them break for others like INT_MAX/INT_MIN leading to revert/DOS
+
