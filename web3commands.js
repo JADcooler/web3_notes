@@ -1,5 +1,7 @@
 //retrieve private variables
 
+await contract2.methods.owner().call() //for view or pure functions
+await contract2.methods.init().send({from: player}) //for gas functions
 
 > await web3.eth.getStorageAt('0x39E2C1570093218C35b4549667896bcc675aeC23',1)
 '0x1000000000000000000000000000000000000000000000000020000000000003'
