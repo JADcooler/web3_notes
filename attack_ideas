@@ -16,3 +16,4 @@ compare well established implementations with current implementation. eg : ERC20
 
 [for loops with msg.value] can be used to double/many spend or withdraw.
 
+nested delegate calls to bypass restrictions if any for a single delegate call.
