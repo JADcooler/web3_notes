@@ -1,0 +1,5 @@
+how are private and internal functions prevented from callin?
+do they have a jumpdest too?
+
+what's the bytecode that allows a function to jump to other internal and private functions?
+
