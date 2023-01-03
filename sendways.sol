@@ -3,6 +3,7 @@ send by function call
 
 value mari, u can have data for msg.data in receiving end
 
+.send({from: player}) for zero parameter parameter functions
 
 call fumction
 
