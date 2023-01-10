@@ -4,3 +4,16 @@ error InsufficientBalance(uint256 available, uint256 required); //similar to eve
                 available: balance[msg.sender],
                 required: amount
             });
+
+The error data would be encoded identically as the ABI encoding for function calls, 
+i.e., abi.encodeWithSignature("InsufficientBalance(uint256,uint256)", balance[msg.sender], amount).
+
+try wallet.donate10(msg.sender) {
+            return true;
+        } catch (bytes memory err) {
+            if (keccak256(abi.encodeWithSignature("NotEnoughBalance()")) == keccak256(err)) {
+                // send the coins left
+                wallet.transferRemainder(msg.sender);
+                return false;
+            }
+        }
