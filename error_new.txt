@@ -1,0 +1,6 @@
+error InsufficientBalance(uint256 available, uint256 required); //similar to event definition 
+
+ revert InsufficientBalance({
+                available: balance[msg.sender],
+                required: amount
+            });
