@@ -1,5 +1,8 @@
 \//retrieve private variables
 
+> web3.eth.getBlock(1920050).timestamp
+> web3.eth.getTransaction(tx).blockNumber
+
 await contract2.methods.owner().call() //for view or pure functions
 await contract2.methods.init().send({from: player}) //for gas functions
 
