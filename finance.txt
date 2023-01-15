@@ -15,9 +15,32 @@ volatility increases slippage
 
 slippage tolerance in uniswap, stops a trade if it moves past a certain percentage of slippage to investment
 
+
 LIQUIDITY
 _________
 
 ability of an exchange to convert asset to cash
 
 market makers provide liquidity in central exchanges
+
+
+IMPERMANENT LOSS
+________________
+
+difference of asset worth by providing liquidity - asset worth if you didn't provide liquidity.
+
+ 
+RUG PULL
+________
+
+dev creates new coin and sets up an exchange. people trade crypto like bitcoin, ethereum for this new coin
+there's no option to sell coin, amont of legit coins in exchange is way higher than these new coins,
+Dev runs away with the legit coins.
+
+
+ARBITRAGE OPPORTUNITY
+_____________________
+
+lets say coinbase says 80rs per eth, while an exchange says 90rs per eth.
+you buy from exchange and sell to coinbase.
+if it's 60rs per ether in coinbase. you buy from coinbase and sell to exchange.
