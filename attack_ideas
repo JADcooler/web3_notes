@@ -21,3 +21,5 @@ nested delegate calls to bypass restrictions if any for a single delegate call.
 decompile contracts, abi may just be a mask
 
 self destructing logic contract of a proxy disables delegatecalls permanently, they'll succeed but no data returns
+
+contract kula irukra stuff ike uint a = 10; wont work for upgradable contracts
