@@ -1,0 +1,6 @@
+for an array if iteration is unbounded, gas limit may expire and revert
+so add an upperbound - low severity
+
+Check if conditions, some might require revert instead.
+eg token convertion recieve but giveback uses if condition, such that if it fails, tx isn't reverted - high severity
+
