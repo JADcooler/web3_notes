@@ -4,3 +4,11 @@ so add an upperbound - low severity
 Check if conditions, some might require revert instead.
 eg token convertion recieve but giveback uses if condition, such that if it fails, tx isn't reverted - high severity
 
+use of uninitialized vars affecting calculations - low severity
+
+fee reduced on msg.sender, example transferFrom reduces fee on msg.sender, though he wasnt part of txn. - low severity
+
+arbitrary value assignment cannot be reversed - medium severity
+
+
+
