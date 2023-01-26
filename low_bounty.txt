@@ -10,5 +10,13 @@ fee reduced on msg.sender, example transferFrom reduces fee on msg.sender, thoug
 
 arbitrary value assignment cannot be reversed - medium severity
 
+txns in same block diff block giving different effects, maybe uintended - high severity
+
+no checks on roundID nor timeStamp, resulting in stale
+price IN ORACLE - medium severity
+
+STUPID - mempool transaction of an user is noted, attacker sees it and issues same txn with higher priority,
+	victim gets error because of DOS since similar parameters were passed by attacker - severity ??? --> https://github.com/code-423n4/2021-05-yield-findings/issues/43
+
 
 
