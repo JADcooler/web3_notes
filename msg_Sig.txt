@@ -16,3 +16,14 @@ functions this works as expected because a fresh call (with a new msg.sig)
 is always made. However with a public functions, which are called from
 within the same contract, this doesn’t happen and the problem described
 above occurs.
+
+
+ /**
+     * @dev Each function in the contract has its own role, identified by their msg.sig signature.
+     * ROOT can give and remove access to each function, lock any further access being granted to
+     * a specific action, or even create other roles to delegate admin control over a function.
+     */
+    modifier auth() {
+        require (_hasRole(msg.sig, msg.sender), "Access denied");
+        _;
+    }
