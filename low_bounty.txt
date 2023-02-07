@@ -17,6 +17,12 @@ price IN ORACLE - medium severity
 
 STUPID - mempool transaction of an user is noted, attacker sees it and issues same txn with higher priority,
 	victim gets error because of DOS since similar parameters were passed by attacker - severity ??? --> https://github.com/code-423n4/2021-05-yield-findings/issues/43
+____
+MINE
+____
 
+recieve vs fallback. incase send, transfer is used
 
-
+in case function parameter order is imp.
+asd({paramName: paramValue, paramName1:paramName2})
+is a better way.
