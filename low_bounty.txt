@@ -26,3 +26,7 @@ recieve vs fallback. incase send, transfer is used
 in case function parameter order is imp.
 asd({paramName: paramValue, paramName1:paramName2})
 is a better way.
+
+super.func() will execute func in all base contracts 
+with func()
+whereas Base.func() will only execute Base func().
