@@ -1,0 +1,5 @@
+light ah pathen
+basically have a mapping of address=>bool of owners,
+if its not true and they're tring to sign,
+we increment total signs and set mapping to true.
+we can't execute required function till required numbered of people approve.

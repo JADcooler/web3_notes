@@ -30,3 +30,6 @@ is a better way.
 super.func() will execute func in all base contracts 
 with func()
 whereas Base.func() will only execute Base func().
+
+deleting an element doesn't decrease the length of an array.
+it just sets the val of that element to 0
