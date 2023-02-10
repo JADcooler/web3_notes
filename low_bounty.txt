@@ -39,3 +39,10 @@ The safeTransferFrom function is used to check if the
 address receiving the token is an ERC-721 receiver or not
 if transferFrom is called and msg.sender is contract which 
 doesn't have ERC721 API then, shit's locked
+
+safe functions aka reentrant and DOS
+
+something that could return false but is not checked
+check every func possible return value.
+
+
