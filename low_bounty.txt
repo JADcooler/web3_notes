@@ -33,3 +33,9 @@ whereas Base.func() will only execute Base func().
 
 deleting an element doesn't decrease the length of an array.
 it just sets the val of that element to 0
+
+
+The safeTransferFrom function is used to check if the 
+address receiving the token is an ERC-721 receiver or not
+if transferFrom is called and msg.sender is contract which 
+doesn't have ERC721 API then, shit's locked
