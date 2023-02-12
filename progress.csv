@@ -1,6 +1,6 @@
 start, end, did what, date
-10:29, 11:07, read docs til assert, 03/2/2023 
-12:40, 12:51, read docs till 0x51 , 05/2/2023
+10:29,  11:07, read docs til assert  , 03/2/2023 
+12:40,  12:51, read docs till 0x51   , 05/2/2023
 03:11,  04:01, read docs till visibi , 05/02/2023
 04:18,  04:49, till state mut. viewfn, 05/02/2023
 07:36,  07:48, till fallback         , 06/02/2023
@@ -8,3 +8,4 @@ start, end, did what, date
 17:38,  18:12, till modifier overload, 07/02/2023
 19:21,  20:17, auditor book 270 s9.3 , 10/02/2023
 12:32,  13:24, coded some eyes	     , 12/02/2023
+14:53,   
