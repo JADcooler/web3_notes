@@ -17,6 +17,8 @@ price IN ORACLE - medium severity
 
 STUPID - mempool transaction of an user is noted, attacker sees it and issues same txn with higher priority,
 	victim gets error because of DOS since similar parameters were passed by attacker - severity ??? --> https://github.com/code-423n4/2021-05-yield-findings/issues/43
+
+-----------------------------------------------------------------------
 ____
 MINE
 ____
@@ -45,4 +47,21 @@ safe functions aka reentrant and DOS
 something that could return false but is not checked
 check every func possible return value.
 
+return value could have nothing to do, contrary to expectations.
+------------------------------------------------------------------------
+________________
+EXPRESSION ERROR
+________________
 
+in an expression, ethu highest bytes in operand oh
+athu based ah than underflow overflow nadakum
+
+eg: uint32 a, uint8 b = 1;
+
+a = 0 - b;
+will assign a to 255
+
+DOS errors by underflow/overflow in ^0.8.0;
+and critical vulnerabilities can be found lesser than version 8
+
+------------------------------------------------------------------------
