@@ -1,0 +1,24 @@
+lets say
+
+library asd
+{
+
+function qwe(uint)
+{
+
+
+}
+}
+
+using asd for uint16;
+
+uint16 x;
+x.qwe(2) //works because uint16 is implicitly convertible to uint
+
+Solidity compiler allows implicit conversion between two data 
+types provided 
+no implicit conversion is possible 
+and there is no loss of information. For example uint8 is convertible
+ to uint16 
+but int8 is convertible to uint256 as int8 can contain negative
+ value not allowed in uint256.
