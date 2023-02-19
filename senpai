@@ -1,0 +1,7 @@
+utxo model makes use of unspent transactions to prove money
+how do flashloans fit into that?
+
+if I use the transaction of flashloan to call another contract
+using a low level call.
+will the transaction be already in the mempool or wont be
+created yet till it doesn't revert?

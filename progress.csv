@@ -1,6 +1,6 @@
 start, end, did what, date
-10:29,  11:07, read docs til assert  , 03/2/2023 
-12:40,  12:51, read docs till 0x51   , 05/2/2023
+.10:29,  11:07, read docs til assert  , 03/02/2023 
+12:40,  12:51, read docs till 0x51   , 05/02/2023
 03:11,  04:01, read docs till visibi , 05/02/2023
 04:18,  04:49, till state mut. viewfn, 05/02/2023
 07:36,  07:48, till fallback         , 06/02/2023
@@ -14,5 +14,11 @@ start, end, did what, date
 18:18,  18:51, finished contract docs, 13/02/2023
 18:57,  19:31, till language grammar , 13/02/2023
 20:05,  20:13, skimmed till internals, 13/02/2023
-11:18,  23:58, flashloands, rcnt hack, 18/02/2023
+23:18,  23:58, flashloands, rcnt hack, 18/02/2023
+10:00,  11:00, DAMDEFI unstoppable   , 19/02/2023
+11:02,  13:00, ERC20 race, contrac tx, 19/02/2023
+14:00,  14:33,
+14:37,  15:54, securm pitfall,practic, 19/02/2023
+ 
+
 

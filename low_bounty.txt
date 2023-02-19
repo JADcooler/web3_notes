@@ -23,6 +23,11 @@ ____
 MINE
 ____
 
+if modifier code is designed to continue function as
+an if-else statement.
+he function would return default ( 0 ) if modifier doesn't
+revert
+
 recieve vs fallback. incase send, transfer is used
 
 in case function parameter order is imp.
@@ -65,3 +70,5 @@ DOS errors by underflow/overflow in ^0.8.0;
 and critical vulnerabilities can be found lesser than version 8
 
 ------------------------------------------------------------------------
+
+
