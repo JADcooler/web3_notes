@@ -5,3 +5,18 @@ if I use the transaction of flashloan to call another contract
 using a low level call.
 will the transaction be already in the mempool or wont be
 created yet till it doesn't revert?
+
+___________________________
+
+liquidity through flashloans
+how does that work?
+
+---------------------------
+
+so, lets say
+flasloans is offered by LP
+I use same flashloans to offer flash loans
+to someone else with higher fee
+
+profit profit?
+

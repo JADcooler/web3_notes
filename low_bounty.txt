@@ -72,3 +72,9 @@ and critical vulnerabilities can be found lesser than version 8
 ------------------------------------------------------------------------
 
 
+SAFE TRANSFER LIB, 
+if safe transfer to address is 
+contract which was self destructed 
+or is invalid.
+
+safe transfer will succeed
