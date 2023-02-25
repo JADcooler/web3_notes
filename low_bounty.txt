@@ -1,3 +1,12 @@
+NEWS
+____
+
+if transferFrom is allowed to be called at 0 allowance,
+zero transfer phishing can be done.
+caused $9m in damages to wallets this year.
+
+
+--------------------------------------------------------------------
 for an array if iteration is unbounded, gas limit may expire and revert
 so add an upperbound - low severity
 
