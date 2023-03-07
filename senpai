@@ -1,3 +1,10 @@
+how does self destruct force send money ?
+can regular transacions somehow do that?
+maybe without the selfdestruct bytecode?
+
+
+
+------------------------------------------------------------
 utxo model makes use of unspent transactions to prove money
 how do flashloans fit into that?
 
@@ -19,4 +26,7 @@ I use same flashloans to offer flash loans
 to someone else with higher fee
 
 profit profit?
+
+--------------------------------
+
 
