@@ -1,3 +1,12 @@
 nonce – A counter that indicates the number of transactions sent 
  from an externally-owned account or the number of contracts created by a 
 contract account.
+
+EIP-2718(opens in a new tab)↗ is what allows for this behavior. Transactions are interpreted as:
+
+TransactionType || TransactionPayload
+
+Where the fields are defined as:
+
+TransactionType - a number between 0 and 0x7f, for a total of 128 possible transaction types.
+TransactionPayload - an arbitrary byte array defined by the transaction type
