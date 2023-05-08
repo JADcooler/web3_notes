@@ -10,3 +10,6 @@ Where the fields are defined as:
 
 TransactionType - a number between 0 and 0x7f, for a total of 128 possible transaction types.
 TransactionPayload - an arbitrary byte array defined by the transaction type
+
+
+Bridges are of 3 types, External validators, light client and relays, and liquidity networks
