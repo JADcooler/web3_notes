@@ -20,5 +20,11 @@ function addQuote(uint256 baseTokenAmount, uint256 fractionalTokenAmount) public
 uniswap solved this issue by sending first 1000lp token to 0 address.
 https://0xvolodya.hashnode.dev/lowest-paying-findings-on-code4rena-sherlock
 
-TODO
 analyse all examples in this url
+
+when using this, make checks if latest round id is satisfied nd all
+latestRoundData
+
+ require(updatedAt >= roundID, "Stale price");
+        require(timestamp != 0,"Round not complete");
+        require(answer > 0,"Chainlink answer reporting 0");
