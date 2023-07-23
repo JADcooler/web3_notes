@@ -1,3 +1,27 @@
+##PLAN
+#FINISH ALL SECUREUM RACES AND TUTORIAL
+#DAMN DEFI
+#COMPLETE 5 AUDITS OF EXISTING AUDITS
+no order really
+#START
+#DEADLINE: AUGUST 10
+
+
+##Secureum youtube
+start: 9:22p
+#Ethereum 101 - done
+gas: https://youtu.be/MFoxW07ICKs?t=1414
+#Ethereum 201 - inprogress
+
+
+#LUKSO audit July 2023
+#understanding contracts
+#start:2:43
+#youtube video
+start:2:43p , end: 3:46p
+#code arena docs
+start:4:34p
+
 ##BASICS
 # How do NFTS work 
 # NFT metadata
