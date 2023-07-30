@@ -6,6 +6,11 @@ no order really
 #START
 #DEADLINE: AUGUST 10
 
+#Real life transaction order dependence attacks POC in geth
+
+#Tutorial on geth
+
+#MEV bot races
 
 ##Secureum youtube
 start: 9:22p
@@ -14,19 +19,10 @@ gas: https://youtu.be/MFoxW07ICKs?t=1414
 #Ethereum 201 - inprogress
 
 
-#LUKSO audit July 2023
-#understanding contracts
-#start:2:43
-#youtube video
-start:2:43p , end: 3:46p
-#code arena docs
-start:4:34p
-
 ##BASICS
 # How do NFTS work 
 # NFT metadata
 # xy = k in NFTs
-
 
 
 ## READ AUDIT REPORTS
@@ -36,11 +32,9 @@ start: 7:00, pause: 9:00
 # read audit
 
 
-## UNISWAPv3 BOOK INPROGRESS
+## UNISWAPv3 BOOK
 
 ## UNISWAPv3 AUDIT IN PLAN
-
-## DAMN DEFI IN HOLD
 
 ## bytes032.xyz IN PLAN
 # find the bug challenge (common vuln) : 5/25 
