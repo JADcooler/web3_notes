@@ -7,7 +7,13 @@ Experiment with ecrecover -- PRIORITY to Start
 #START
 #DEADLINE: AUGUST 10
 
+Way to understand a protocol is to build tests and invoke every method
+
 #real life ERC20 supporting tokens and their unique properties
+
+#See  approval to uniswap Router, being reflected as approval to uniswap Pair irl
+
+
 
 #uniswap book, see uniswap repo
 #uniswapv2 book, see uniswapv2 repo
