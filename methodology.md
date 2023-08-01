@@ -3,11 +3,17 @@
 #DAMN DEFI
 #COMPLETE 5 AUDITS OF EXISTING AUDITS
 no order really
-Experiment with ecrecover -- PRIORITY to Start
+Experiment with ecrecover -- PRIORITY to Start ##
 #START
 #DEADLINE: AUGUST 10
 
 Way to understand a protocol is to build tests and invoke every method
+
+for now
+##PROTOCOLS ORDER UNDERSTAND AND BUILD TESTS IN HARDHAT
+#OZ ERC20
+#OZ ERC721
+#wETH
 
 #real life ERC20 supporting tokens and their unique properties
 
