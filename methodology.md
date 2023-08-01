@@ -3,14 +3,28 @@
 #DAMN DEFI
 #COMPLETE 5 AUDITS OF EXISTING AUDITS
 no order really
+Experiment with ecrecover -- PRIORITY to Start
 #START
 #DEADLINE: AUGUST 10
 
+#real life ERC20 supporting tokens and their unique properties
+
+#uniswap book, see uniswap repo
+#uniswapv2 book, see uniswapv2 repo
+#uniswapv3 book, see uniswapv3 repo
+
+
+##Console cowboys python real life network monitoring attacks
 #Real life transaction order dependence attacks POC in geth
 
 #Tutorial on geth
 
 #MEV bot races
+
+#Code anonymous journal web3
+
+#Code new EIPs with tests and check composibility (how it interacts and pans out)
+#with existing real life tokens
 
 ##Secureum youtube
 start: 9:22p
