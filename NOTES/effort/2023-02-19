@@ -1,0 +1,58 @@
+ERC20 approve race condition
+
+yo wow O_O
+
+https://swcregistry.io/docs/SWC-114
+
+lmao ithuku than increaseAllowance and decreaseAllowance iruku hahahha XD
+
+parity access control error
+
+then self destruct error
+
+lmao parity xD
+
+seeing about ecrecover() ... interesting...
+
+erc20 transfer with boolean, without a return boolean
+https://medium.com/coinmonks/missing-return-value-bug-at-least-130-tokens-affected-d67bf08521ca
+
+same with erc721 ownerOf
+
+_______________________
+
+created contracts have address
+
+address = sha3(rlp.encode([account_address,transaction_nonce]))
+
+
+________________________
+
+require vs assert
+
+require refunds gas
+assert consumes gas
+
+_________________________________
+
+relayer: someone who execs transaction for u.
+a relayer is better trusted if min gas can be set
+
+https://swcregistry.io/docs/SWC-126
+
+_____________________________
+
+
+finished readin 
+https://secureum.substack.com/p/security-pitfalls-and-best-practices-101
+
+------------------------------------------------------------------
+
+
+shheez how ARE these byes stored ? -_-
+QUOTE'
+There are some operations in Solidity that need a temporary memory area larger than 64 bytes and therefore will not fit into the scratch space. They will be placed where the free memory points to, but given their short lifetime, the pointer is not updated. The memory may or may not be zeroed out. Because of this, one should not expect the free memory to point to zeroed out memory.
+UNQUOTE
+
+so, what ARe these operations ? 9_9
+

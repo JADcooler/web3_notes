@@ -1,0 +1,10 @@
+score - 4/8
+
+50%
+
+what i learnt,
+
+check 0 address checks,
+check if error messages are proper,
+check for proper if conditions
+check if it follows as per spec

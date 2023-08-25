@@ -1,0 +1,16 @@
+BlockThreat week 24
+
+
+NFT common attacks
+==================
+https://0xvolodya.hashnode.dev/nft-attacks?utm_source=substack&utm_medium=email
+
+1) use safe functions instead of mint and transferFrom,
+The latter gives NFT to addresses even in cases when it doesn't support ERC721
+
+2) onERC721Received hook reentrancy, look for checks effects pattern
+On places with mint and transfers
+
+3) setApproveForAll usecase
+
+4) 

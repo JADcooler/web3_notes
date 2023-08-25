@@ -1,0 +1,21 @@
+so,
+
+If I have,
+contract BASE
+
+contract B1 is BASE
+contract B2 is BASE 
+contract B3 is B1,B2
+
+If I have function func() in all of them
+and I call super.func() in B3 it'll go to B2
+If I call super.func() in B2, it'll go to B1,
+If I call super.func() in B1, only then BASE func() executes
+
+As you can see, There is kind of like a array ish kinda execution
+
+This shit is called inheritance graph
+
+In this case it is, 
+
+B3 -> B2 -> B1 -> BASE

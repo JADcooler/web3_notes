@@ -1,0 +1,11 @@
+const { getContractAddress } = require('@ethersproject/address')
+
+ const transactionCount = await player.getTransactionCount()
+
+const futureAddress = getContractAddress({
+          from: player.address,
+          nonce: transactionCount
+        })
+
+
+//THIS EXAMPLKE IS FOR EWTHERS JS

@@ -1,0 +1,11 @@
+vulnerability pattern:
+
+two external calls hoping they would give the same result
+whereas they are prone to attacks 
+
+even if the external calls are view, they can be attacked 
+when the calling contract makes a noticable state change
+which can be leveraged in the called contract to modify
+the returned value.
+
+

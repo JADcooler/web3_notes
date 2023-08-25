@@ -1,0 +1,9 @@
+can ISPs block access to these seed nodes
+ChatGPT
+It is technically possible for Internet Service Providers (ISPs) to block access to the seed nodes used by the Bitcoin network for peer discovery. However, it is unlikely that this would be effective in completely blocking access to the network.
+
+The reason for this is that the Bitcoin network is decentralized, meaning that there are many different ways for nodes to connect to the network. While the seed nodes provide an initial entry point into the network, nodes can also connect to other nodes in the network through a process called "peer-to-peer" networking.
+
+In addition, the Bitcoin Protocol supports a feature called "DNS seeding", which allows nodes to discover other nodes through a domain name system (DNS) lookup instead of relying solely on seed nodes. This means that even if ISPs were to block access to the seed nodes, nodes on the network could still use DNS seeding or peer-to-peer networking to connect to other nodes.
+
+That being said, if a significant number of seed nodes were to be blocked by ISPs, it could potentially slow down the process of new nodes joining the network, as they would have to rely more heavily on peer-to-peer networking or DNS seeding. However, it is unlikely that this would have a significant impact on the overall functionality of the network.

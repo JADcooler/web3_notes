@@ -1,0 +1,29 @@
+
+everything we send is public.
+
+msg.sender refers to the one who makes the req
+
+we have (hexdigest, value)
+
+this is visible for everyone.
+
+so we have this from user side
+ (fake, value, secret) #not sure why this secret shit is used
+ visible only to the user
+
+ if the sender just wanted to pump up or make the auction look bimbo he uses fake=1
+ then hashes the three and puts it out as (hexdigest, value).
+
+ the auction after ending, makes all em send the original (fake, value, secret) as array
+ then the array of (hexdigest, value) in contract is compared
+
+ compute hash and check if legit
+ i.e hash(fake[i] + value[i] + secret[i]) == hexdigest[i] 
+ 
+ if fake == 0 and bitch is not highest bidder we refund
+ if fake == 1 we ignore
+ if hash doesn't match. we ignore
+
+
+ 
+

@@ -1,0 +1,5 @@
+solmate safetransfer doesn't check if token is a contract
+OZ does.
+
+caviar till private pool
+https://github.com/code-423n4/2023-04-caviar/tree/main

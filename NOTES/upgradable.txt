@@ -1,0 +1,4 @@
+so, ERC20 cannot be used inside proxy contracts,
+ERC20Upgradable is a fork that utilizes initializable public function constructors instead of the usual ones.
+
+contract kula irukra stuff ike uint a = 10; wont work for upgradable contracts

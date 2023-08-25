@@ -1,0 +1,1 @@
+for invalid addresses, call , delegate call, static call returns true

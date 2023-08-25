@@ -1,0 +1,4 @@
+We look at a transaction, see the nonce and everything, from uniswap create pair
+
+We can calculate the address to which the contract will get deployed to, maybe then find 
+the parameters to create a pair contract with the same address and DOS it? SAD

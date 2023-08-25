@@ -1,0 +1,30 @@
+First depositor issue
+
+A classic issue with vaults. First depositor can deposit a single wei and then donate to the vault to 
+greatly inflate the share ratio. Due to truncation when converting to shares this can be used to 
+steal funds from later depositors.
+
+function addQuote(uint256 baseTokenAmount, uint256 fractionalTokenAmount) public view returns (uint256) {
+    uint256 lpTokenSupply = lpToken.totalSupply();
+    if (lpTokenSupply > 0) {
+        // calculate amount of lp tokens as a fraction of existing reserves
+        uint256 baseTokenShare = (baseTokenAmount * lpTokenSupply) / baseTokenReserves();
+        uint256 fractionalTokenShare = (fractionalTokenAmount * lpTokenSupply) / fractionalTokenReserves();
+        return Math.min(baseTokenShare, fractionalTokenShare);
+    } else {
+        // if there is no liquidity then init
+        return Math.sqrt(baseTokenAmount * fractionalTokenAmount);
+    }
+}
+
+uniswap solved this issue by sending first 1000lp token to 0 address.
+https://0xvolodya.hashnode.dev/lowest-paying-findings-on-code4rena-sherlock
+
+analyse all examples in this url
+
+when using this, make checks if latest round id is satisfied nd all
+latestRoundData
+
+ require(updatedAt >= roundID, "Stale price");
+        require(timestamp != 0,"Round not complete");
+        require(answer > 0,"Chainlink answer reporting 0");

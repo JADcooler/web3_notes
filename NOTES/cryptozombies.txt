@@ -1,0 +1,175 @@
+time in 
+
+natspec --> comment stuff in solidity
+
+44 minutes 
+3 days
+3 hours
+2 seconds
+
+{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155",
+"to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a",
+"data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}],"id":1}
+
+cryptoZombies.methods.createRandomZombie(name)
+  .send({ from: userAccount })
+  .on("receipt", function(receipt) {
+    $("#txStatus").text("Successfully created " + name + "!");
+    // Transaction was accepted into the blockchain, let's redraw the UI
+    getZombiesByOwner(userAccount).then(displayZombies);
+  })
+  .on("error", function(error) {
+    // Do something to alert the user their transaction has failed
+    $("#txStatus").text(error);
+  });
+}
+
+cryptoZombies.events.NewZombie()
+.on("data", function(event) {
+  let zombie = event.returnValues;
+  // We can access this event's 3 return values on the `event.returnValues` object:
+  console.log("A new zombie was born!", zombie.zombieId, zombie.name, zombie.dna);
+}).on("error", console.error);
+
+
+// Use `filter` to only fire this code when `_to` equals `userAccount`
+cryptoZombies.events.Transfer({ filter: { _to: userAccount } })
+.on("data", function(event) {
+  let data = event.returnValues;
+  // The current user just received a zombie!
+  // Do something here to update the UI to show it
+}).on("error", console.error);
+
+
+receipt will fire when the transaction is included into a block on Ethereum, which means our zombie has been created and saved on our contract
+error will fire if there's an issue that prevented the transaction from being included in a block, such as the user not sending enough gas. 
+	We'll want to inform the user in our UI that the transaction didn't go through so they can try again.
+
+You can optionally specify gas and gasPrice when you call send, e.g. .send({ from: userAccount, gas: 3000000 }). If you don't specify this, 
+	MetaMask will let the user choose these values.
+
+
+VRFConsumerBase
+  bytes32 keyHash;
+    uint256 fee;
+    uint256 randomResult;
+
+    struct Zombie {
+        string name;
+        uint dna;
+    }
+
+    Zombie[] public zombies;
+
+    constructor() VRFConsumerBase(
+        0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B, // VRF Coordinator
+        0x01BE23585060835E02B77ef475b0Cc51aA1e0709  // LINK Token
+    ) public{
+      // 2. Fill in the body
+        keyHash = 0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311;
+        fee = 100000000000000000;
+    }
+
+
+
+window.addEventListener('load', function() {
+
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    // Handle the case where the user doesn't have web3. Probably
+    // show them a message telling them to install Metamask in
+    // order to use our app.
+  }
+  // Now you can start your app & access web3js freely:
+  startApp()
+
+})
+	call => execute functions that are pure or view
+	send => rest, involves gas
+
+
+      function getZombieDetails(id) {
+        return cryptoZombies.methods.zombies(id).call()  // its an array zombies[id]
+      } 
+
+      function zombieToOwner(id) {
+        return cryptoZombies.methods.zombieToOwner(id).call() //its a mapping zombieToOwner[id]
+      }
+
+
+var accountInterval = setInterval(function() {
+  // Check if account has changed
+  if (web3.eth.accounts[0] !== userAccount) {
+    userAccount = web3.eth.accounts[0];
+    // Call some function to update the UI with the new account
+    updateInterface();
+  }
+}, 100);
+
+What this does is check every 100 milliseconds to see if userAccount is still equal web3.eth.accounts[0] (i.e. does the user still have that account active). If not, it reassigns userAccount to the currently active account, and calls a function to update the display.
+
+
+
+
+
+
+
+
+
+
+>?>>???
+
+Random number generation via keccak256
+
+The best source of randomness we have in Solidity is the keccak256 hash function.
+
+We could do something like the following to generate a random number:
+
+// Generate a random number between 1 and 100:
+uint randNonce = 0;
+uint random = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+randNonce++;
+uint random2 = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+
+What this would do is take the timestamp of now, the msg.sender, and an incrementing nonce
+ (a number that is only ever used once, so we don't run the same hash function with the same input parameters twice).
+
+It would then "pack" the inputs and use keccak to convert them to a random hash. 
+Next, it would convert that hash to a uint, and then use % 100 to take only the last 2 digits. This will give us a totally random number between 0 and 99.
+This method is vulnerable to attack by a dishonest node
+
+In Ethereum, when you call a function on a contract, you broadcast it to 
+a node or nodes on the network as a transaction. The nodes on the network then collect a bunch of transactions, 
+try to be the first to solve a computationally-intensive mathematical problem as a "Proof of Work", 
+and then publish that group of transactions along with their Proof of Work (PoW) as a block to the rest of the network.
+
+Once a node has solved the PoW, the other nodes stop trying to solve the PoW, verify that the other node's 
+list of transactions are valid, and then accept the block and move on to trying to solve the next block.
+
+This makes our random number function exploitable.
+
+Let's say we had a coin flip contract — heads you double your money, tails you lose everything. 
+Let's say it used the above random function to determine heads or tails. (random >= 50 is heads, random < 50 is tails).
+
+If I were running a node, I could publish a transaction only to my own node and not share it. 
+I could then run the coin flip function to see if I won — and if I lost, choose not to include that transaction in the next 
+block I'm solving. I could keep doing this indefinitely until I finally won the coin flip and solved the next block, and profit.
+So how do we generate random numbers safely in Ethereum?
+
+Because the entire contents of the blockchain are visible to all participants, this is a hard problem, and its solution 
+is beyond the scope of this tutorial. You can read this StackOverflow thread for some ideas. One idea would be to use 
+an oracle to access a random number function from outside of the Ethereum blockchain.
+
+Of course, since tens of thousands of Ethereum nodes on the network are competing to solve the next block, 
+my odds of solving the next block are extremely low. It would take me a lot of time or computing resources to 
+exploit this profitably — but if the reward were high enough (like if I could bet $100,000,000 on the coin flip function), 
+it would be worth it for me to attack.
+
+So while this random number generation is NOT secure on Ethereum, in practice unless our random function has a 
+lot of money on the line, the users of your game likely won't have enough resources to attack it.
+
+Because we're just building a simple game for demo purposes in this tutorial and there's no real money on the line, 
+we're going to accept the tradeoffs of using a random number generator that is simple to implement, knowing that it isn't totally secure.

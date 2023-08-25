@@ -1,0 +1,98 @@
+DELEGATE CALL
+_____________
+
+(bool success, bytes memory data) = _contract.delegatecall(
+            abi.encodeWithSignature("setVars(uint256)", _num)
+        );
+
+(bool success, bytes memory data) = _contract.delegatecall(
+            abi.encodeWithSignature("setVars(uint256,uint256)", _num, _num2)
+        );
+
+abi.decode(result, (uint256));
+abi.decode(result, (return list));
+
+msg.data is the raw data that's sent in the transaction.
+couldn't make them work for arrays ;_;
+
+what i tried
+_______________________________________________________
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+// NOTE: Deploy this contract first
+contract B {
+    // NOTE: storage layout must be the same as contract A
+    uint[] public num = new uint[](3);
+    address public sender;
+    uint public value;
+
+    function setVars(uint[] calldata _num) public payable {
+        num = _num;
+        sender = msg.sender;
+        value = msg.value;
+    }
+}
+
+contract A {
+    uint[] public num = new uint[](3);
+    address public sender;
+    uint public value;
+
+    function setVars(address _contract, uint[] calldata _num) public payable returns (bool success, bytes memory data, bytes memory)
+     {
+        // A's storage is set, B is not modified.
+        (bool success, bytes memory data) = _contract.call(
+            abi.encodeWithSignature("setVars(uint[])", _num)
+        );
+
+       return (success,   data,abi.encodeWithSignature("setVars(uint[])", _num)
+ );
+    }
+}
+____________________________________________________________________
+
+receive() is called if msg.data is empty, otherwise fallback() is called.
+
+(bool success, ) = address(level13).call{gas: i + (8191 * 3)}(abi.encodeWithSignature("enter(bytes8)", _gateKey));
+
+
+if conract objec has payable functions payable is used
+
+for (uint256 i = 0; i < 300; i++) {
+            (bool success, ) = address(level13).call{gas: i + (8191 * 3)}(abi.encodeWithSignature("enter(bytes8)", _gateKey));
+            if (success) {
+                break;
+            }
+        }
+
+
+TRY CATCH
+________
+
+A failure in an external call can be caught using a try/catch statement
+
+ DataFeed feed;
+
+try feed.getData(token) returns (uint v) {
+            return (v, true);
+        } catch Error(string memory /*reason*/) {
+            // This is executed in case
+            // revert was called inside getData
+            // and a reason string was provided.
+            errorCount++;
+            return (0, false);
+        } catch Panic(uint /*errorCode*/) {
+            // This is executed in case of a panic,
+            // i.e. a serious error like division by zero
+            // or overflow. The error code can be used
+            // to determine the kind of error.
+            errorCount++;
+            return (0, false);
+        } catch (bytes memory /*lowLevelData*/) {
+            // This is executed in case revert() was used.
+            errorCount++;
+            return (0, false);
+        }
+
+

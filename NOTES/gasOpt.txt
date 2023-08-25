@@ -1,0 +1,34 @@
+[In short, use calldata instead of memory if the function argument is only read.]
+(Calldata arrays are read-only)
+
+------------
+Therefore in the case of Non-Payable functions, there are additional opcodes that are executed while calling a non-payable function which ensures that the function shall only be executed if the ether (msg.value) that is sent along with the transaction is exactly equal to ZERO.
+However, the same is not true for Payable function. Payable functions allow users to pass in both non-zero or zero ether values while calling the function
+PAYABLE FUNCTIONS SAVE GAS
+
+[every constructor can have payable and save gas as msg.val is in control of the deployer]
+
+-----------
+If a pure like function calls all pure functions, gas is still high as if all were public
+[if a pure like function calls all pure, and does pure. make it pure]
+
+----------
+
+[delete var, instead of var = 0. no matter type]
+
+----------
+[Functions guaranteed to revert when called by normal users can be marked payable]
+
+----------
+[<x> += <y> Costs More Gas Than <x> = <x> + <y> For State Variables]
+
+----------
+[require() Should Be Used Instead Of assert()]
+
+----------
+[avoid all uint except uint256]
+
+_________
+[use Solidity 0.8.19 for gas boost]
+
+

@@ -1,0 +1,19 @@
+PRIVATE VARIABLE TO PUBLIC VARIABLE
+___________________________________
+
+Has a contract from one contract with private variables duplicated in other contract where the private
+variables are public and have their compiler issued getters.
+
+maybe a small script that changes keyword "private" to "public" in every line which doesn't start with function
+
+then a function definition that uses assembly perhaps, to store private variables of the target function
+in our duplicated function.
+
+assembly 
+{
+loop
+	sstore on slot 0 read from target contract slot 0
+			i				i
+}
+
+this function can be called __pvCopy()
