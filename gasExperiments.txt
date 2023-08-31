@@ -1,3 +1,0 @@
-1) Internal functions inside external functions vs just using the external function 
-
-2) using incrementor inside for loop header and inside function definition

@@ -1,8 +1,0 @@
-c678ef1aa456da65c6fc5861d44892cd
-fac0c6c8c2560bf0c9fbcdae2f4735a9
-
-hex 16 values per symbol
-bin 2 values per symbol
-
-8 bits symbol per hex symbol to reach same bandwidth
-32*8 = 256bits jub jub checks out

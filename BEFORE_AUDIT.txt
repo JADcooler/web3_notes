@@ -1,4 +1,0 @@
-open low_bounty.txt
-open attack_ideas.txt
-open https://secureum.substack.com/p/security-pitfalls-and-best-practices-101
-open https://github.com/0xRajkumar/DefiVuln

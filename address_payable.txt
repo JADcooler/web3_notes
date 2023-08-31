@@ -1,5 +1,0 @@
-msg.sender is an address payable
-
-tx.origin is an address payable
-
-block.coinbase is an address payable

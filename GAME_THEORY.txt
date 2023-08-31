@@ -1,5 +1,0 @@
-a Nash equilibrium occurs when all the players are simultaneously
-making a best reply to the strategy choices of the others.
-
-
-in page 29

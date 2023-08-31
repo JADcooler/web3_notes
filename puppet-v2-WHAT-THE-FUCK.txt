@@ -1,8 +1,0 @@
-see the damnfi/ repo where i made a commit WHAT THE FUCK\
-I approve to uniswap router
-
-But the approval is reflected in uniswap pair, (as if i had used approve on that address! NO tho!)
-
-but uniswap pair uses transferFrom to do the transferring to itself
-
-jus look at the console prints man, wtf really!!~sdkf sdhgnjdgnjfdg

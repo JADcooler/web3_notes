@@ -1,8 +1,0 @@
-See,
-When we have an array and we insert the first element out of the constructor, nothing happens and we're able
-to see the length of the array in it's slot.
-
-but When we do it from the constructor. 
-It ceases to be so.
-
-WHY??

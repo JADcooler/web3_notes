@@ -1,3 +1,0 @@
-send cash to cotnractt , self destruct one contract 
-
-selfdestruct(payable(addr)); // addr = victim contract

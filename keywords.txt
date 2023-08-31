@@ -1,1 +1,0 @@
-The indexed parameters for logged events will allow you to search for these events using the indexed parameters as filters.
