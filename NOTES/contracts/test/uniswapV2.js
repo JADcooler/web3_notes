@@ -5,6 +5,9 @@ const {
 const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
+// const {deployContract} = waffle;
+
+const abiRouter = require('../artifacts/contracts/uniswapv2/UniswapV2Router02.sol/UniswapV2Router02.json').abi;
 
 describe("Uniswap V2", function () {
   // We define a fixture to reuse the same setup in every test.
@@ -12,18 +15,18 @@ describe("Uniswap V2", function () {
   // and reset Hardhat Network to that snapshot in every test.
 
   async function deployFactory() {
-
+    
     // Contracts are deployed using the first signer/account by default
     const [owner, puppetOwner, player, player2] = await ethers.getSigners();
 
     //libraries
-    const SafeMath = await (await (await ethers.getContractFactory("SafeMath")).deploy()).getAddress()
-    const Math = await (await (await ethers.getContractFactory("Math")).deploy()).getAddress()
-    const UniswapV2Library = await (await (await ethers.getContractFactory("UniswapV2Library")).deploy()).getAddress()
-    const UQ112x112 = await (await (await ethers.getContractFactory("UQ112x112")).deploy()).getAddress()
-    const UniswapV2OracleLibrary = await (await (await ethers.getContractFactory("UniswapV2OracleLibrary")).deploy()).getAddress()
+    const SafeMath =(await (await ethers.getContractFactory("SafeMath")).deploy())
+    const Math =(await (await ethers.getContractFactory("Math")).deploy())
+    // const UniswapV2Library = await (await ethers.getContractFactory("UniswapV2Library")).deploy()
+    const UQ112x112 =(await (await ethers.getContractFactory("UQ112x112")).deploy())
+    const UniswapV2OracleLibrary =(await (await ethers.getContractFactory("UniswapV2OracleLibrary")).deploy())
     
-    console.log("math is ", Math)
+    // console.log("math is ", Math)
 
     // // const Lock = await ethers.getContractFactory("Lock");
     const Factory = await ethers.getContractFactory("UniswapV2Factory");
@@ -32,7 +35,7 @@ describe("Uniswap V2", function () {
     const Weth = await ethers.getContractFactory("WETH9");
     const weth = await Weth.deploy();
 
-    console.log("FACTORY",await factory.getAddress())
+    // console.log("FACTORY",await factory.getAddress())
     fa = await factory.getAddress();
     wa = await weth.getAddress();
 
@@ -41,38 +44,39 @@ describe("Uniswap V2", function () {
       fa,
       wa
     );
-    // factory = 2;
-    // router = 3;
-  //   // weth = 4;
-  //   ,
-  //   {
-  //   libraries : {
-  //     SafeMath: SafeMath,
-  //     UniswapV2Library: UniswapV2Library,
-  //     UniswapV2OracleLibrary: UniswapV2OracleLibrary,
-  //     UQ112x112: UQ112x112
-  //   }
-  // }
 
     return { owner, puppetOwner, player, player2,  factory, weth, router};
 
+  }
+
+  async function deployTokens() {
+
+    const tokenA = await (await ethers.getContractFactory("TokenA")).deploy(
+      "tokenA",
+      "A"
+    );
+
+    const tokenB = await (await ethers.getContractFactory("TokenB")).deploy(
+      "tokenB",
+      "B"
+    );
+
+    return {tokenA, tokenB};
+    
   }
 
   describe("Add liquidity (addLiquidity) ", function () {
 
     it("Should create pair if it doesn't exist ", async function () {
       const {owner, puppetOwner, player, player2,  factory, weth, router} = await loadFixture(deployFactory);
+      const {tokenA, tokenB} = await loadFixture(deployTokens);
 
-      const tokenA = await (await ethers.getContractFactory("TokenA")).deploy(
-        "tokenA",
-        "A"
-      );
+      tokenA.approve(await router.getAddress(), 10000000);
+      tokenB.approve(await router.getAddress(), 10000000);
 
-      const tokenB = await (await ethers.getContractFactory("TokenB")).deploy(
-        "tokenB",
-        "B"
-      );
-      
+      allPairsArrayCount = await ethers.provider.getStorage(await factory.getAddress(), 3);
+      expect(BigInt(allPairsArrayCount)).to.equal(0n);
+
       await router.addLiquidity(
         await tokenA.getAddress(),
         await tokenB.getAddress(),
@@ -84,97 +88,108 @@ describe("Uniswap V2", function () {
         123123123123123123n
       );
 
+      allPairsArrayCount = await ethers.provider.getStorage(await factory.getAddress(), 3);
+      expect(BigInt(allPairsArrayCount)).to.equal(1n);
+
+      expect(await factory.allPairs(0)).to.not.equal(0);
+
+
     });
 
-  //   it("Should set the right owner", async function () {
-  //     const { lock, owner } = await loadFixture(deployOneYearLockFixture);
+    it("Should add liquidity with amount A Desired and amount B desired ", async function() {
 
-  //     expect(await lock.owner()).to.equal(owner.address);
-  //   });
+      const {owner, puppetOwner, player, player2,  factory, weth, router} = await loadFixture(deployFactory);
+      const {tokenA, tokenB} = await loadFixture(deployTokens);
 
-  //   it("Should receive and store the funds to lock", async function () {
-  //     const { lock, lockedAmount } = await loadFixture(
-  //       deployOneYearLockFixture
-  //     );
+      tokenA.approve(await router.getAddress(), 10000000);
+      tokenB.approve(await router.getAddress(), 10000000);
 
-  //     expect(await ethers.provider.getBalance(lock.target)).to.equal(
-  //       lockedAmount
-  //     );
-  //   });
+      //first liquidity to add to the pair
+      result = await router.addLiquidity(
+        await tokenA.getAddress(),
+        await tokenB.getAddress(),
+        10000,
+        1000,
+        1000,
+        1000,
+        player.address,
+        123123123123123123n //deadline
+      );
+      // const UniswapPairFactory = new ethers.ContractFactory(pairJson.abi, pairJson.bytecode, deployer);
+      const UniswapPairFactory = await ethers.getContractFactory("UniswapV2Pair");
+      //attach pair token to pair var
+      uniswapExchange = await UniswapPairFactory.attach(
+        await factory.getPair(await tokenA.getAddress() ,await tokenB.getAddress())
+    );
 
-  //   it("Should fail if the unlockTime is not in the future", async function () {
-  //     // We don't use the fixture here because we want a different deployment
-  //     const latestTime = await time.latest();
-  //     const Lock = await ethers.getContractFactory("Lock");
-  //     await expect(Lock.deploy(latestTime, { value: 1 })).to.be.revertedWith(
-  //       "Unlock time should be in the future"
-  //     );
-  //   });
-  // });
+      liquidity = await uniswapExchange.balanceOf(await player.getAddress());
 
-  // describe("Withdrawals", function () {
-  //   describe("Validations", function () {
-  //     it("Should revert with the right error if called too soon", async function () {
-  //       const { lock } = await loadFixture(deployOneYearLockFixture);
+      expect(liquidity).to.equal(BigInt(Math.floor(Math.sqrt(10000*1000) - 1000)))
 
-  //       await expect(lock.withdraw()).to.be.revertedWith(
-  //         "You can't withdraw yet"
-  //       );
-  //     });
+      result = await router.addLiquidity(
+        await tokenA.getAddress(),
+        await tokenB.getAddress(),
+        1000,
+        100,
+        1000,
+        100,
+        player.address,
+        123123123123123123n //deadline
+      );
+      
 
-  //     it("Should revert with the right error if called from another account", async function () {
-  //       const { lock, unlockTime, otherAccount } = await loadFixture(
-  //         deployOneYearLockFixture
-  //       );
+    });
 
-  //       // We can increase the time in Hardhat Network
-  //       await time.increaseTo(unlockTime);
 
-  //       // We use lock.connect() to send a transaction from another account
-  //       await expect(lock.connect(otherAccount).withdraw()).to.be.revertedWith(
-  //         "You aren't the owner"
-  //       );
-  //     });
+    it("Should prefer amount A Desired even when amount B Desired is bigger ", async function() {
 
-  //     it("Shouldn't fail if the unlockTime has arrived and the owner calls it", async function () {
-  //       const { lock, unlockTime } = await loadFixture(
-  //         deployOneYearLockFixture
-  //       );
+      const {owner, puppetOwner, player, player2,  factory, weth, router} = await loadFixture(deployFactory);
+      const {tokenA, tokenB} = await loadFixture(deployTokens);
 
-  //       // Transactions are sent using the first signer by default
-  //       await time.increaseTo(unlockTime);
+      tokenA.approve(await router.getAddress(), 10000000);
+      tokenB.approve(await router.getAddress(), 10000000);
 
-  //       await expect(lock.withdraw()).not.to.be.reverted;
-  //     });
-  //   });
+      //first liquidity to add to the pair
+      result = await router.addLiquidity(
+        await tokenA.getAddress(),
+        await tokenB.getAddress(),
+        10000,
+        10000,
+        1000,
+        1000,
+        player.address,
+        123123123123123123n //deadline
+      );
 
-  //   describe("Events", function () {
-  //     it("Should emit an event on withdrawals", async function () {
-  //       const { lock, unlockTime, lockedAmount } = await loadFixture(
-  //         deployOneYearLockFixture
-  //       );
+      const UniswapPairFactory = await ethers.getContractFactory("UniswapV2Pair");
+      //attach pair token to pair var
+      uniswapExchange = await UniswapPairFactory.attach(
+        await factory.getPair(await tokenA.getAddress() ,await tokenB.getAddress())
+    );
 
-  //       await time.increaseTo(unlockTime);
+      let reserveA, reserveB
+      [reserveA, reserveB,]  = await uniswapExchange.getReserves();
+   
+      amountADesired = 1000 //this reachable
 
-  //       await expect(lock.withdraw())
-  //         .to.emit(lock, "Withdrawal")
-  //         .withArgs(lockedAmount, anyValue); // We accept any value as `when` arg
-  //     });
-  //   });
+      const Lib = await ethers.getContractFactory("UniswapV2Library2");
+      const lib = await Lib.deploy();
 
-  //   describe("Transfers", function () {
-  //     it("Should transfer the funds to the owner", async function () {
-  //       const { lock, unlockTime, lockedAmount, owner } = await loadFixture(
-  //         deployOneYearLockFixture
-  //       );
+      amountBOptimal = await lib.quote(amountADesired, reserveA, reserveB);
+      console.log("amountBOptimal ",amountBOptimal)
+      result = await router.addLiquidity(
+        await tokenA.getAddress(),
+        await tokenB.getAddress(),
+        1000, //amountADesired
+        2000,  //amountBDesired
+        500, //amountAMin
+        500,  //amountBMin
+        player.address, //to
+        123123123123123123n //deadline
+      );
+      
 
-  //       await time.increaseTo(unlockTime);
+    });
 
-  //       await expect(lock.withdraw()).to.changeEtherBalances(
-  //         [owner, lock],
-  //         [lockedAmount, -lockedAmount]
-  //       );
-  //     });
-  //   });
   });
 });

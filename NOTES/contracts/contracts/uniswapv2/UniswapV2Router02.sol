@@ -40,7 +40,7 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
         uint amountBMin
     ) internal virtual returns (uint amountA, uint amountB) {
         // create the pair if it doesn't exist yet
-        console.log("getPair ",IUniswapV2Factory(factory).getPair(tokenA, tokenB));
+        // console.log("getPair ",IUniswapV2Factory(factory).getPair(tokenA, tokenB));
         if (IUniswapV2Factory(factory).getPair(tokenA, tokenB) == address(0)) {
             IUniswapV2Factory(factory).createPair(tokenA, tokenB);
         }
@@ -75,6 +75,7 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
         TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
         liquidity = IUniswapV2Pair(pair).mint(to);
+        // console.log(amountA,amountB, liquidity);
     }
     function addLiquidityETH(
         address token,
