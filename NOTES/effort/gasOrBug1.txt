@@ -1,0 +1,15 @@
+G1)
+
+Modifier GAS OPTIMIZATION
+-------------------------
+
+    function requireSelfCall() private view {
+        require(msg.sender == address(this), "GS031");
+    }
+
+    modifier authorized() {
+        // This is a function call as it minimized the bytecode size
+        requireSelfCall();
+        _;
+    }
+
