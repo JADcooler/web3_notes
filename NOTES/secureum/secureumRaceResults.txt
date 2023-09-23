@@ -3,4 +3,6 @@ race 5: 4/8
 race 6: 3/8
 race 7: 5/8 [23 minutes, 97 loc]
 race 8: 7/8 [17 minutes, 185 loc]
+race 9: 5/8 [12 minutes, 52 loc]
+
 
