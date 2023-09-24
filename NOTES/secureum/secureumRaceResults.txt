@@ -8,3 +8,9 @@ race 10: 4/8 [23 minutes,  95 loc]
 race 11: 2/8 [12 minutes,  80 loc]
 race 12: 2/8 [53 minutes,  92 loc]
 race 13: 4/8 [39 minutes, 164 loc]
+race 14: 2/8 [38 minutes, 141 loc]
+
+i'm stopping till race 14, its apparent i have knowledge gaps from MEV foundry mainnet simulation
+to low level solidity code, to under-collaterized funds (basic finance in staking and yield).
+Will resume after I cover that, hopefull with infamous projects that implement that.
+

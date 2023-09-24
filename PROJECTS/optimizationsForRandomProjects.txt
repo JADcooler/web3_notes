@@ -1,0 +1,18 @@
+ModuleManager, GnosisSafe
+
+    function execTransactionFromModule(
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation
+    ) public virtual returns (bool success) {
+        // Only whitelisted modules are allowed.
+        require(msg.sender != SENTINEL_MODULES && modules[msg.sender] != address(0), "GS104");
+        // Execute transaction without further confirmations.
+        success = execute(to, value, data, operation, gasleft());
+        if (success) emit ExecutionFromModuleSuccess(msg.sender);
+        else emit ExecutionFromModuleFailure(msg.sender);
+    }
+
+A Simulate transaction can be made to save gas of user in case its a transaction that might fail
+like revert("success") if call succeeds, or revert("failure") in case it fails
