@@ -1,8 +1,10 @@
-race 4: 3/8
-race 5: 4/8
-race 6: 3/8
-race 7: 5/8 [23 minutes, 97 loc]
-race 8: 7/8 [17 minutes, 185 loc]
-race 9: 5/8 [12 minutes, 52 loc]
-
-
+race 04: 3/8
+race 05: 4/8
+race 06: 3/8
+race 07: 5/8 [23 minutes,  97 loc]
+race 08: 7/8 [17 minutes, 185 loc]
+race 09: 5/8 [12 minutes,  52 loc]
+race 10: 4/8 [23 minutes,  95 loc]
+race 11: 2/8 [12 minutes,  80 loc]
+race 12: 2/8 [53 minutes,  92 loc]
+race 13: 4/8 [39 minutes, 164 loc]
