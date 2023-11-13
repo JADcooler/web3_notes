@@ -1,0 +1,47 @@
+=====================================================================
+SET BALANCE 
+
+const {
+    loadFixture, setBalance 
+  } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
+
+        await setBalance(signers.owner.address, 10n**17n)
+        await setBalance(attacker.address, 10n**17n)
+
+=====================================================================
+CONTRACT SIZE DEPLOYMENT
+
+To remove gas error in deploying huge contracts
+
+  networks: {
+    hardhat: {
+      allowUnlimitedContractSize: true,
+    }
+  },
+
+in module.exports
+
+=====================================================================
+FIXTURES
+
+fixtures.js
+-----------
+load fixtures
+const fixturesDeployment = async () => {
+	//everything here
+
+}
+
+module.exports = fixturesDeployment
+
+testSomething.js
+----------------
+const {
+    loadFixture 
+  } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
+  const { expect } = require("chai")
+  const { ethers } = require("hardhat")
+  const fixturesDeployment = require("../scripts/fixturesDeployment.js")
+  
+
+=====================================================================
