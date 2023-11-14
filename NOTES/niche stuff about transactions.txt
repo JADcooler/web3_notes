@@ -1,0 +1,4 @@
+if a user has 10 ether
+sends msg.value 10 ether in a transaction
+but recovers it in the same transaction
+he can post it and after it only the gas he spent will be missing from his wallet
