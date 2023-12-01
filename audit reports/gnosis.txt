@@ -1,0 +1,5 @@
+
+* Replace owner had owners.length - 1 instead of owners.length in a loop. this made owners list and isOwner out of sync
+	when the final owner had to be replaced
+
+https://solodit.xyz/issues/c02-any-owner-of-the-multisig-can-execute-unconfirmed-transactions-openzeppelin-celo-contracts-audit-markdown

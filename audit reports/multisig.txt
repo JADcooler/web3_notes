@@ -1,0 +1,35 @@
+no 0 address check for a multisig function, if 0 can brick contract
+https://solodit.xyz/issues/m-07-maintokenset_mint_multisig-doesnt-check-that-_minting_multisig-doesnt-equal-zero-code4rena-boot-finance-boot-finance-contest-git
+
+
+function where a mini pool assigns a owner from the multisig,
+implementation makes such that same enabled owner is used for all pools. This will DOS the pools
+if he deactivates, so make round robin approach (instead of looping from 0, loop from i
+where i = previous owner index)
+https://solodit.xyz/issues/m-04-requirenextactivemultisig-will-always-return-the-first-enabled-multisig-which-increases-the-probability-of-stuck-minipools-code4rena-gogopool-gogopool-contest-git
+
+cant modify multisig after limit reached,
+soln: add replaceOwner
+https://solodit.xyz/issues/m-11-multisigmanager-may-not-be-able-to-add-a-valid-multisig-code4rena-gogopool-gogopool-contest-git
+
+if no multisig is enaabled. rewards areent given because of a divide by zero revert.
+https://solodit.xyz/issues/m-21-division-by-zero-error-can-block-rewardspoolstartrewardcycle-if-all-multisig-wallet-are-disabled-code4rena-gogopool-gogopool-contest-git
+
+required signatures can be greater than number of owners, making multisig unusable
+https://solodit.xyz/issues/function-to-set-threshold-can-get-the-multisig-wallets-totally-stuck-halborn-pancakeswap-aptos-dex-move-pdf
+
+destination address is not checked to be a contract, it will show as executed in the case its self destructed (trail of bits)
+https://solodit.xyz/issues/multisigwallet-can-call-invalid-contracts-trailofbits-aztec-pdf
+soln: Check for bad transactions when adding and executing
+
+wrong owner is removed,
+https://solodit.xyz/issues/trst-m-1-removal-of-multisig-members-will-corrupt-data-structures-trust-security-none-mozaic-archimedes-markdown_
+soln check index properly
+
+required and owner count isnt checkd after proposal execution
+https://solodit.xyz/issues/trst-m-2-multisig-could-become-permanently-locked-trust-security-none-mozaic-archimedes-markdown_
+Verify that councilMembers.length >= threshold, after execution of the proposal.
+
+overvoting when a proposal executes and a signer votes in the same block.
+https://solodit.xyz/issues/m-07-multisig-can-execute-the-same-proposal-repeatedly-code4rena-axelar-network-axelar-network-git
+soln: Have nonce for each topic. So same proposal would need different nonces
