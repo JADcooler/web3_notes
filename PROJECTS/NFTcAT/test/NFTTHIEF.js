@@ -1,34 +1,36 @@
 // https://docs.ethers.org/v5/api/
 // checkout
-const 
-{
-    expect, assert
-} = require("chai")
+const { toUtf8Bytes, toUtf8String } = require("@ethersproject/strings");
+const
+    {
+        expect, assert
+    } = require("chai")
 const { ethers } = require("hardhat")
 
 const {
     time
-    
-  } = require("@nomicfoundation/hardhat-toolbox/network-helpers");
+
+} = require("@nomicfoundation/hardhat-toolbox/network-helpers");
+
 const { EDIT_DISTANCE_THRESHOLD } = require("hardhat/internal/constants");
+const { Contract } = require("hardhat/internal/hardhat-network/stack-traces/model");
 //globals
 let nftThief
 
-describe("Can set Arbitrary token uri", function()
-{
-    before(async function(){
+describe("NFT Thief Tests", function () {
+    before(async function () {
         const nftThiefFactory = await ethers.getContractFactory("Thief")
         nftThief = await nftThiefFactory.deploy()
     })
 
     context("Can set custom token uri", () => {
-        it("Should work ", async function() {
+        it("Should work ", async function () {
 
             await nftThief.setTokenURI("YO wassup");
             let ret = await nftThief.tokenURI(1n);
             console.log(ret)
         })
-        
+
     })
 
     // A Provider in ethers is a read-only abstraction to access the blockchain data.
@@ -36,38 +38,38 @@ describe("Can set Arbitrary token uri", function()
 
     //ACCOUNT METHODS
     context("ACCOUNT METHODS ", () => {
-        
-        it("Should getBalance ", async function() {
 
-            x = await ethers.provider.getBalance(await nftThief.getAddress() )
+        it("Should getBalance ", async function () {
+
+            x = await ethers.provider.getBalance(await nftThief.getAddress())
             console.log("[Balance] Contract : ", x)
         })
 
-        it("Should getCode ", async function() {
+        it("Should getCode ", async function () {
 
-            x = await ethers.provider.getCode(await nftThief.getAddress() )
-            console.log("[Code] Contract : ", x.slice(0,50), " ...")
+            x = await ethers.provider.getCode(await nftThief.getAddress())
+            console.log("[Code] Contract : ", x.slice(0, 50), " ...")
         })
 
-        it("Should getStorage ", async function() {
+        it("Should getStorage ", async function () {
 
-            x = await ethers.provider.getStorage(await nftThief.getAddress(), 0 )
-            console.log("[Storage] Storage 0 : ", x )
+            x = await ethers.provider.getStorage(await nftThief.getAddress(), 0)
+            console.log("[Storage] Storage 0 : ", x)
         })
-        
-        it("Should getTransactionCount ", async function() {
+
+        it("Should getTransactionCount ", async function () {
 
             x = await ethers.provider.getTransactionCount(await nftThief.getAddress())
-            console.log("[Tx count] TransactionCount : ", x )
+            console.log("[Tx count] TransactionCount : ", x)
         })
-        
+
     })
 
     // Blocks Methods
 
     context("Blocks Methods", () => {
 
-        it("Should getBlock ", async function(){
+        it("Should getBlock ", async function () {
 
             x = await ethers.provider.getBlock(0)
 
@@ -75,7 +77,7 @@ describe("Can set Arbitrary token uri", function()
 
         })
 
-        it("Should getBlockWithTransactions ", async function(){
+        it("Should getBlockWithTransactions ", async function () {
 
             // x = await ethers.provider.getBlockWithTransactions(await time.latestBlock())
             // assert.fail("doesnt ", "work ", "bruh");
@@ -89,17 +91,22 @@ describe("Can set Arbitrary token uri", function()
     })
 
     context("ENS ", () => {
-        it("Should getResolver", async function (){
 
-            // resolver = await ethers.provider.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
-            // console.log("[ENS] ", resolver)
-            //todo after switching network
+        it("Should getResolver", async function () {
+            provider1 = ethers.getDefaultProvider()
+            resolver = await provider1.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
+            console.log("[ENS] ", resolver)
+
         })
-        it("Should resolveName", async function (){
 
-            // resolver = await ethers.provider.resolveName("ricmoo.eth");
-            // console.log("[ENS] ", resolver)
-            //todo after switching network
+        it("Should resolveName", async function () {
+
+            provider2 = new ethers.getDefaultProvider()
+
+
+            resolver = await provider2.resolveName("ricmoo.eth");
+            console.log("[ENS] ", resolver)
+
 
             //SKIPPED EnsResolver methods
             // https://docs.ethers.org/v5/api/providers/provider/#EnsResolver
@@ -108,30 +115,44 @@ describe("Can set Arbitrary token uri", function()
     })
 
     context("Logs Methods", () => {
-        it("Should getNetwork", async function (){
+        it("Should getNetwork", async function () {
 
-            networkis =  await ethers.provider.getNetwork();
-            console.log("[NETWORK] ", networkis);
+            //infure 
+            provider2 = ethers.getDefaultProvider("arbitrum");
+            networkis = await provider2.getNetwork("homestead");
+            console.log("[provider2 NETWORK] ", networkis.toJSON());
+
+            //get set network
+            networkis = await ethers.provider.getNetwork("goerli");
+            console.log("[homestead NETWORK] ", networkis.toJSON());
 
         })
 
-        it("Should getBlockNumber", async function (){
+        it("Should getBlockNumber", async function () {
 
-            networkis =  await ethers.provider.getBlockNumber();
-            console.log("[BLOCK] ", networkis);
+            blockNo = await ethers.provider.getBlockNumber();
+            console.log("[BLOCK] ", blockNo);
+
+            provider2 = ethers.getDefaultProvider("matic");
+            blockNo2 = await provider2.getBlockNumber();
+            console.log("[provider 2 BLOCK] ", blockNo2);
+
+            //check fork (local node has latest block data) (Assume necessary modifications are made in hardhat config)
+            blockNo3 = await ethers.provider.getBlockNumber();
+            console.log("[forked 2 BLOCK] ", blockNo3);
 
         })
 
-        it("Should getGasPrice", async function (){
+        it("Should getGasPrice", async function () {
 
-            networkis =  (await ethers.provider.getFeeData()).gasPrice;
+            networkis = (await ethers.provider.getFeeData()).gasPrice;
             console.log("[GAS PRICE] ", networkis);
 
         })
 
-        it("Should getFeeData", async function (){
+        it("Should getFeeData", async function () {
 
-            networkis =  await ethers.provider.getFeeData();
+            networkis = await ethers.provider.getFeeData();
             console.log("[FEE DATA] ", networkis);
 
         })
@@ -139,18 +160,18 @@ describe("Can set Arbitrary token uri", function()
 
     context("Transactions Methods", () => {
 
-        it("Should call", async function(){
+        it("Should call", async function () {
 
             await ethers.provider.call({
                 to: await nftThief.getAddress()
-                ,data: "0xe0df5b6f000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000072"
+                , data: "0xe0df5b6f000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000072"
             })
-            
+
             // 0xe0df5b6f
             // 0000000000000000000000000000000000000000000000000000000000000020
             // 0000000000000000000000000000000000000000000000000000000000000001
             // 0000000000000000000000000000000000000000000000000000000000000072
-            
+
 
 
             // Actual for a string call [Offset to actual data, length, actual data]
@@ -179,6 +200,42 @@ describe("Can set Arbitrary token uri", function()
         })
 
     })
+
+    context("Events and logs", () => {
+        it("Should get event emitted", async function () {
+
+
+            deployer = (await ethers.getSigners())[1];
+            console.log("deployer is ", deployer.address);
+
+            
+            //way 1 
+            let nonceFilter = {
+                address: await nftThief.getAddress(),
+                topics: [
+                    ethers.id("TokenSet(address,address,uint256)"),                    
+                    '0x0000000000000000000000000000000000000000000000000000000000000017' //filter to indexed nonce as 23
+                    
+                ]
+
+            }
+
+            console.log("Filter is ", nonceFilter)
+
+            ethers.provider.on(nonceFilter, (log, event) => {
+                console.log("The first results are ");
+                console.log(log);
+                console.log(event);
+            });
+            
+
+            await nftThief.setTokenURI("yolo");
+            console.log(await nftThief.nonce());
+
+        })
+    })
+
+
 
 
 })

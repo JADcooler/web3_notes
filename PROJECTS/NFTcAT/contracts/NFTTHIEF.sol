@@ -7,18 +7,21 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Thief is ERC721, Ownable
 {
-
+    uint256 public nonce;
     constructor() ERC721("THFFF", "TF") Ownable(msg.sender)
-    {
+    {   
 
     }
-
+    event TokenSet(address sender, address contractAdr, uint256 indexed tokenNo);
     mapping(address user => string custom_url) token_uri;
 
     function setTokenURI(string calldata url) external returns(uint256)
     {
         token_uri[msg.sender] = url;
 
+        emit TokenSet(msg.sender ,address(this), 23);
+
+        nonce++;
         return uint256(uint160(msg.sender));
 
     }
@@ -29,6 +32,5 @@ contract Thief is ERC721, Ownable
         return token_uri[msg.sender];
 
     }
-
 
 }

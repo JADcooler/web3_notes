@@ -1,0 +1,8 @@
+missing unlock, leads to stuck nfts
+https://solodit.xyz/issues/h-01-a-previously-timelocked-nft-token-becomes-permanently-stuck-in-vault-if-its-ever-moved-back-into-the-vault-code4rena-visor-visor-contest-git
+
+TimeLock cannot schedule the same calls multiple times
+https://solodit.xyz/issues/m-02-timelock-cannot-schedule-the-same-calls-multiple-times-code4rena-yield-yield-micro-contest-1-git
+
+sudden state changes by admin can caues issues, these can be timelocked
+https://solodit.xyz/issues/m-02-missing-event-timelock-for-critical-onlyadmin-functions-code4rena-swivel-swivel-contest-git
