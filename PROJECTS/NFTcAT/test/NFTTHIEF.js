@@ -23,6 +23,24 @@ describe("NFT Thief Tests", function () {
         nftThief = await nftThiefFactory.deploy()
     })
 
+    context("Can set interface for token ", () => {
+        it("Should work with interface ", async function () {
+
+            const iface = [
+                // Constructor
+                "constructor(string symbol, string name)",
+                "function setTokenURI(string calldata url)"
+            ]
+            deployer = (await ethers.getSigners())[1];
+            x = new ethers.Contract(await nftThief.getAddress(), iface, deployer)
+            a = await x.setTokenURI("d d d");
+            let ret = await nftThief.connect(deployer).tokenURI(7n);
+            console.log("return value is ", ret)
+            
+        })
+
+    })
+
     context("Can set custom token uri", () => {
         it("Should work ", async function () {
 
@@ -208,7 +226,7 @@ describe("NFT Thief Tests", function () {
             deployer = (await ethers.getSigners())[1];
             console.log("deployer is ", deployer.address);
 
-            
+
             //way 1 
             let nonceFilter = {
                 address: await nftThief.getAddress(),
