@@ -1,0 +1,3 @@
+param in initialize was zero ~ Total lost: ~190MM USD (some returned)
+https://github.com/coinspect/learn-evm-attacks/tree/master/test/Bridges/NomadBridge
+

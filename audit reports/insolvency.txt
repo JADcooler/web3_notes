@@ -1,0 +1,13 @@
+keyword: insolvency
+solodit
+
+1) After losses in shorting, The collateral is sold in an auction, however. The minimum
+price can fall through the floor of the collateral price causing insolvency, 
+bad debt because of the Auction timer controlled price of the Auction item
+https://solodit.xyz/issues/m-16-auction-timers-following-liquidity-can-fall-through-the-floor-price-causing-pool-insolvency-sherlock-ajna-ajna-git
+
+2) Protocol initializes share price, and amount to payback is share price * no of shares
+share price is initialized after a long hold and liquidation, then the attacker uses this share
+price to instantly get amount to payback, whereas the former had to wait.
+This causes insolvency
+https://solodit.xyz/issues/h-1-amount_claimable_per_share-accounting-is-broken-and-will-result-in-vault-insolvency-sherlock-fair-funding-fair-funding-by-alchemix-unstoppable-git

@@ -1,0 +1,127 @@
+Liquid Staking Protocols
+------------------------
+
+Lido ($13.9 billion)
+
+Rocket Post ($1.7 billion)
+
+
+Lending Protocols
+-----------------
+
+AAVE ($4.5 billion)
+	
+Compound Finance ($1.9 billion)
+
+
+Decentralized Exchanges
+-----------------------
+
+Uniswap ($3.2 billion)
+	
+PancakeSwap ($1.35 billion)
+
+
+Bridges
+-------
+
+WBTC ($4.4 billion)
+
+JustCryptos ($3 billion)
+
+
+Collateralized Debt Positions (CDP)
+-----------------------------------
+
+MakerDAO ($4.8 billion)
+
+JustStables ($1.4 billion)
+
+
+Yield Protocols
+---------------
+
+Convex Finance ($1.8 billion)
+
+Aura ($300 million)
+
+
+Tokenization of Real World Assets
+---------------------------------
+	
+Ondo Finance ($200 million)
+
+Matrix Doc ($87 million)
+
+
+Derivatives
+-----------
+	
+GMX ($470 million)
+
+dYdX ($340 million)
+
+
+Privacy
+-------
+
+Tornado Cash ($230 million)
+
+Railgun ($11 million)
+
+Part 1 covered Liquid Staking, Lending, and Decentralized Exchanges. 
+Part 2 covered Bridges, Collateralized Debt Positions, and Services. 
+Part 3 covered Yield Protocols, Tokenization of Real World Assets, and Derivatives. 
+Part 4 covered Yield Aggregators, Cross Chain Protocols, and Synthetics. 
+Part 5 covered Launchpads, Indexes, and Liquidity managers. 
+Part 6 covered Insurance, Privacy, and Algorithmic Stablecoins. 
+Part 7 covered Payment Protocols, Leveraged Farming, and NFT Marketplaces. 
+Part 8 covered NFT Lending, Staking Pools, and Options. 
+Part 9 covers Options Vaults, Prediction Markets, and Decentralized Stablecoins.
+
+NO NEED 
+=======
+
+Launchpads
+----------
+
+UNCX Network ($203 million)
+
+PinkSale ($156 million)
+
+
+Indexes
+-------
+
+Enzyme Finance ($73 million)
+	
+Bwatch ($65 million)
+
+
+Liquidity managers
+------------------
+
+Arrakis Finance ($184 million)
+
+Gamma ($78 million)
+
+
+Insurance
+---------
+
+Nexus Mutual ($220 million)
+
+Unslashed ($28 million)
+
+
+Algorithmic Stablecoins
+-----------------------
+
+Mento ($71 million)
+	
+Frax ($45 million)
+
+
+
+
+

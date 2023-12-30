@@ -1,0 +1,5 @@
+In a perpetual contract, the profit or loss of one trader is essentially transferred
+ from those who are on the losing side. For example, if one trader opens a long 
+ position (betting on price increase) and another trader opens a short position 
+ (betting on price decrease), the gains of the long position would come from the 
+ losses of the short position, and vice versa

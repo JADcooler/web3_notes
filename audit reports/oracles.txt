@@ -1,0 +1,9 @@
+Oracles may return zero when unable to provide the required value
+proper validation is required
+https://solodit.xyz/issues/m-9-price-returned-by-oracle-is-not-verified-sherlock-tokemak-git
+
+
+
+price manipulation through flashloans for 4 continous blocks
+20230711 RodeoFinance - TWAP Oracle Manipulation
+https://github.com/SunWeb3Sec/DeFiHackLabs/blob/main/src/test/RodeoFinance_exp.sol
