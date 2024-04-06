@@ -1,0 +1,94 @@
+ethers.utils.defaultAbiCoder.encode(["bytes", "uint256"], [payload, proposalId]);
+
+________________________
+await expect( async functiuon withoiut awauit ).to.be.revertedWith("string on revert")
+
+=====================================================================
+grep in hardhat test
+
+npx hardhat test test/NFTTHIEF.js --grep interface
+
+=====================================================================
+EVENTS
+  topics: [
+    '0x7dfd65bd47fca3ab3a8a690e485b0cc76ddc16ed166f87f367884ff29e2b9297'
+  ],
+first event is hash of the evvenet eg: Transfer(address,address,amount)
+then the indexed ones folllow in topics
+rest are packed and attached in data
+
+  data: '0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb922660000000000000000000000000454a47986
+02babb16529f49920e8b2f4a747bb20000000000000000000000000000000000000000000000000000000000000017',
+  topics: [
+    '0x7dfd65bd47fca3ab3a8a690e485b0cc76ddc16ed166f87f367884ff29e2b9297'
+  ],
+
+
+zeroPadValue
+
+=====================================================================
+
+npm install --save dotenv 
+
+require('dotenv').config(); in hardhat config
+
+
+common network names to give as getDefaultProvider is in networks.ts
+
+
+=====================================================================
+TIME
+
+const {
+    loadFixture, time
+  } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
+
+await time.latest()
+
+=====================================================================
+SET BALANCE 
+
+const {
+    loadFixture, setBalance 
+  } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
+
+        await setBalance(signers.owner.address, 10n**17n)
+        await setBalance(attacker.address, 10n**17n)
+
+=====================================================================
+CONTRACT SIZE DEPLOYMENT
+
+To remove gas error in deploying huge contracts
+
+  networks: {
+    hardhat: {
+      allowUnlimitedContractSize: true,
+    }
+  },
+
+in module.exports
+
+=====================================================================
+FIXTURES
+
+fixtures.js
+-----------
+load fixtures
+const fixturesDeployment = async () => {
+	//everything here
+
+}
+
+module.exports = fixturesDeployment
+
+testSomething.js
+----------------
+const {
+    loadFixture 
+  } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
+  const { expect } = require("chai")
+  const { ethers } = require("hardhat")
+  const fixturesDeployment = require("../scripts/fixturesDeployment.js")
+  
+
+=====================================================================

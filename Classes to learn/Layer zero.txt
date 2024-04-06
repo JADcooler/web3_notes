@@ -1,0 +1,27 @@
+so, in layerzero v1 we have a relayer and a verifier.
+
+meh,
+u need to pass msg.value so relayer can use that in the destination chain
+
+A trusted remote is the 40 bytes (for evm-to-evm messaging) that identifies another 
+contract which you will receive messages from within your LayerZero User Application contract. 
+The 40 bytes object is the packed bytes of the remoteAddress + localAddress
+
+The reason to care about Trusted Remotes is that from a security perspective contracts 
+should only receive messages from known contracts. Hence, contracts are securely connected by 
+"setting trusted remotes"
+
+functions expect the trusted remote format: 40 bytes, 20 for remote address, 20 for local address
+retryPayload()		_srcAddress	✅
+hasStoredPayload()	_srcAddress	✅
+forceResumeReceive()	_srcAddress	✅
+setTrustedRemote()	_srcAddress	✅
+isTrustedRemote()	_srcAddress	✅
+lzReceive()		_srcAddress	✅
+
+remote address is the address of the contract that sent the message to this contract
+local contract is the address of this contract
+
+so, when OFT tokens issue sendFrom, _deduct is sent to the destination chains, what if 
+the user had made it blockingReceive and the balance is not updated, before which it might've
+been zeroed already!

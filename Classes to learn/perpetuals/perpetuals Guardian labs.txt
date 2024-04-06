@@ -1,0 +1,4 @@
+### What are perpetuals?
+
+Perpetuals are essentially just a way for a trader to bet on the price of a certain *index token* 
+without actually buying the token while enabling the trader to employ *leverage*.

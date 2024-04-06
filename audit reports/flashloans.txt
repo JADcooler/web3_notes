@@ -1,0 +1,8 @@
+the one where, msg.sender or person who initiated the flashloan wasn't checked
+leading to arbitrary flashloan receives
+no msg.sender in receiveFlashLoan callback
+https://github.com/coinspect/learn-evm-attacks/tree/master/test/Business_Logic/EarningFarm
+
+
+
+	

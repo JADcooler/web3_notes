@@ -1,0 +1,82 @@
+TO SEARCH
+	 Required entry point contract functionality
+
+
+_________
+prevent replay attacks (both cross-chain and multiple EntryPoint implementations), 
+the signature should depend on chainid and the EntryPoint address.
+
+An account that works with aggregated signature, should return 
+its signature aggregator address in the “sigAuthorizer” return value of validateUserOp. It MAY ignore the signature field
+
+nonce can be used like key : pair
+its iunt256 tho
+
+th ~ Required entry point contract functionalit
+
+_____
+
+Entry point contracts shud have handleOps and handleAggregatedOps
+in non paymaster case:
+	verification loop
+	execution loop
+
+verification loop
+=-=-=-=-=-=-=-=-=-=
+
+HandleOps call must perform the following steps for each UserOperation:
+	Create the account if it does not yet exist, using the initcode provided in the UserOperation
+	calculate the maximum possible fee the account needs to pay 
+	Call validateUserOp on the account, passing in the UserOperation, its hash and the required fee
+	Validate the account’s deposit in the entryPoint is high enough to cover the max possible cost
+
+* Fees is deducted after validateUserOp to acc
+
+execution loop
+=-=-=-=-=-=-==-=
+
+Call the account with the UserOperation’s calldata.
+executeUserOp(userOp,userOpHash)
+refund the account’s deposit with the excess gas cost that was pre-charged.
+
+______________
+how paymaster is paying
+-=-=-=-=-=-=-=-=-=-=-=-=-
+
+validateUserOp is called with a missingAccountFunds of 0 to reflect that the account’s deposit is not used for payment for this userOp
+paymaster is called and not the account.
+
+So, the paymaster have x amount staked which will be slashed if they DOS the system
+
+They also have to deposit to cover the fees for user operations.
+The deposit (for paying gas fees) is separate from the stake (which is locked).
+______________
+
+there's client behaviour on seeing an user op, which u can queue after geth
+_________________________________________________________________________________________________________
+
+Using Signature Aggregator
+=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+aggregators must be staked, it shudnt be banned or something
+bundler calls ->validateUserOpSignature on aggregator
+
+_________________________________________________________________________________________________________
+
+Simulation
+=-=-=-=-=-=-
+
+a UserOperation is not allowed to access any information that might change between simulation and execution, 
+such as current block time, number, hash etc.
+
+_________________________________________________________________________________________________________
+
+Bundling
+=-=-==-=--=
+During bundling the bundler will
+
+* Exclude UserOps that access any sender address of another UserOp in the same batch.
+* Exclude UserOps that access any address created by another UserOp validation in the same batch (via a factory).
+* Sort UserOps by aggregator, to create the lists of UserOps-per-aggregator.
+
+th ~ Run debug_traceCall 
